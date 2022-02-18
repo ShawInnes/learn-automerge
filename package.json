@@ -1,0 +1,16 @@
+{
+  "name": "learn-automerge",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "automerge": "^1.0.1-preview.7"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
