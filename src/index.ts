@@ -1,32 +1,42 @@
 import * as Automerge from 'automerge';
 import {CardDocument} from "./cardDocument";
 
-let doc1 = Automerge.from<CardDocument>({cards: []});
+export const sum = (a: number, b: number) => {
+    return a + b;
+}
 
-doc1 = Automerge.change(doc1, 'Add Card', doc => {
-    doc.cards.push({title: 'Item 1', done: false});
-    doc.cards.push({title: 'Item 2', done: false});
-});
+export const mul = (a: number, b: number) => {
+    return a * b;
+}
 
-let doc2 = Automerge.init<CardDocument>();
-doc2 = Automerge.merge(doc2, doc1);
+export const doAutoMerge = () => {
+    let doc1 = Automerge.from<CardDocument>({cards: []});
 
-doc2 = Automerge.change(doc2, 'Add Card', doc => {
-    doc.cards.push({title: 'Item 2', done: false});
-    doc.cards.push({title: 'Item 3', done: false});
-});
+    doc1 = Automerge.change(doc1, 'Add Card', doc => {
+        doc.cards.push({title: 'Item 1', done: false});
+        doc.cards.push({title: 'Item 2', done: false});
+    });
 
-console.log('doc1', doc1);
-console.log('doc2', doc2);
+    let doc2 = Automerge.init<CardDocument>();
+    doc2 = Automerge.merge(doc2, doc1);
 
-let finalDoc = Automerge.merge(doc1, doc2);
+    doc2 = Automerge.change(doc2, 'Add Card', doc => {
+        doc.cards.push({title: 'Item 2', done: false});
+        doc.cards.push({title: 'Item 3', done: false});
+    });
 
-console.log('finalDoc', finalDoc);
+    console.log('doc1', doc1);
+    console.log('doc2', doc2);
 
-const history = Automerge.getHistory(finalDoc);
+    let finalDoc = Automerge.merge(doc1, doc2);
 
-console.log('history', history);
+    console.log('finalDoc', finalDoc);
 
-const file = Automerge.save(finalDoc);
+    const history = Automerge.getHistory(finalDoc);
 
-console.log('file', file);
+    console.log('history', history);
+
+    const file = Automerge.save(finalDoc);
+
+    console.log('file', file);
+}
